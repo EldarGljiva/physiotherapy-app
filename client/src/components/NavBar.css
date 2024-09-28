@@ -1,0 +1,33 @@
+/* NavBar.css */
+.navbar-custom {
+  background-color: #2c3e50;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-custom .nav-link {
+  color: #ffffff;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #a8e1e0;
+}
+
+.navbar-custom .special-nav-link {
+  color: #ffb84d;
+}
+
+.navbar-custom .special-nav-link:hover {
+  color: #d89a3c;
+}
+
+/* When sticky aka scrolled */
+.navbar-custom.sticky {
+  background-color: #0056b3;
+}
+
+.logo {
+  max-width: 100%; /* Ensures it doesn't overflow the container */
+  height: auto; /* Maintains aspect ratio */
+  width: 65px; /* Set your desired width */
+  object-fit: contain; /* Ensures the image is resized to fit */
+}

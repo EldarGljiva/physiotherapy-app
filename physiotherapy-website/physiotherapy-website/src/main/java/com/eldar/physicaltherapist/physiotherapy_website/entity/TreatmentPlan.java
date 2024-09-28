@@ -1,5 +1,6 @@
 package com.eldar.physicaltherapist.physiotherapy_website.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TreatmentPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

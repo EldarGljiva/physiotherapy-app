@@ -1,5 +1,6 @@
 package com.eldar.physicaltherapist.physiotherapy_website.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY means that database will generate id automatically by incrementing the value by 1
@@ -17,6 +19,7 @@ public class User {
 
     @Email
     @NotNull
+    @Column(unique = true, nullable = false)
     private String email;
 
     @NotNull
