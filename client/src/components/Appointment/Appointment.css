@@ -1,0 +1,69 @@
+/* Full page section styling */
+.appointment-page {
+  position: relative;
+  height: 100vh; /* Full height for the page */
+  background-image: url("../../assets/aboutUsImage.jpg"); /* Replace with your image path */
+  background-size: cover; /* Cover the entire section */
+  background-position: center; /* Center the background image */
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+}
+
+/* Overlay to darken the background image */
+.appointment-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Centering buttons */
+.appointment-buttons {
+  display: flex; /* Use flex to align buttons */
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 20px; /* Space between buttons */
+  margin-top: 20px; /* Space above the button section */
+}
+
+.book-online-button {
+  background: linear-gradient(
+    135deg,
+    #c8efe3,
+    #a7e8d9
+  ); /* Teal to mint gradient */
+  color: #3e5d7c !important; /* White text */
+  padding: 15px 30px !important; /* Increased padding for larger button */
+  font-size: 20px !important; /* Increased font size */
+  border: none !important; /* No border */
+  border-radius: 45px !important; /* Rounded corners */
+  font-weight: bold !important; /* Bold text */
+  transition: background 0.3s ease, transform 0.2s !important; /* Smooth background transition */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important; /* Subtle shadow effect */
+}
+
+.call-us-button {
+  background: #6c757d !important; /* Grayish color */
+  color: #ffffff !important; /* White text */
+  padding: 15px 30px !important; /* Increased padding for larger button */
+  border: none !important; /* No border */
+  border-radius: 45px !important; /* Rounded corners */
+  font-size: 20px !important; /* Increased font size */
+  font-weight: bold !important; /* Bold text */
+  transition: background 0.3s ease, transform 0.2s !important; /* Smooth background transition */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important; /* Subtle shadow effect */
+}
+
+.call-us-button:hover {
+  transform: translateY(-2px); /* Slightly lift the button on hover */
+  background: #ffa500 !important;
+}
+.book-online-button:hover {
+  transform: translateY(-2px); /* Slightly lift the button on hover */
+  background: #a8fae7 !important;
+}

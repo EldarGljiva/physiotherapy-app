@@ -1,0 +1,76 @@
+/* Form container styling */
+.register-form-container {
+  border: 1px solid #cccccc; /* Light gray border */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #ffffff; /* White background for the form */
+  padding: 40px 30px; /* Adjusted padding for better mobile view */
+  width: 100%;
+  max-width: 450px;
+  margin: auto; /* Centered form */
+}
+
+/* Input label styling */
+.register-form-label {
+  color: #7d7d7d !important; /* Medium gray for labels */
+  font-weight: 500; /* Slightly bolder text for better readability */
+  font-size: 16px; /* Ensure it's legible on mobile */
+}
+
+/* Input field styling */
+.form-control {
+  background-color: #f7f7f7; /* Same light gray background as the page */
+  border: 1px solid #cccccc; /* Light gray border */
+  padding: 10px;
+  border-radius: 5px; /* Smooth border */
+  box-shadow: none; /* Remove default shadow */
+  transition: border-color 0.3s ease;
+}
+
+/* Input focus styling with teal */
+.form-control:focus {
+  border-color: #008080; /* Teal for input focus */
+  box-shadow: 0 0 5px rgba(0, 128, 128, 0.3); /* Teal shadow on focus */
+}
+
+/* Button styling with gradient */
+button[type="submit"] {
+  background: linear-gradient(
+    135deg,
+    #20c997,
+    #17a2b8,
+    #0d6efd
+  ); /* Teal, mint, and bluish gradient */
+  color: #ffffff; /* White text */
+  border: none; /* Remove default border */
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px; /* Rounded corners */
+  font-size: 18px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+/* Button hover styling */
+button[type="submit"]:hover {
+  background: linear-gradient(
+    135deg,
+    #17a2b8,
+    #0d6efd
+  ); /* Stronger blue-teal gradient on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .register-form-container {
+    padding: 20px 15px; /* Less padding for smaller screens */
+  }
+
+  .register-form-label {
+    font-size: 14px; /* Slightly smaller font for labels */
+  }
+
+  button[type="submit"] {
+    font-size: 16px; /* Smaller button text for mobile */
+  }
+}

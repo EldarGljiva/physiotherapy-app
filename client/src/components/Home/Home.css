@@ -1,0 +1,73 @@
+/* Home.css */
+.col .btn-get-started {
+  background-color: #5dae69; /* Green */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 89px; /* Rounded corners */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+  padding: 12px;
+  max-width: 350px;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-right: 15px;
+}
+
+.col .btn-get-started:hover {
+  background-color: #4c9a55; /* Darker Green on hover */
+}
+
+.col .btn-register {
+  background-color: #ffb84d; /* Orange */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 89px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition */
+  padding: 12px;
+  max-width: 350px;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-left: 15px;
+}
+
+.col .btn-register:hover {
+  background-color: #d89a3c; /* Darker Orange on hover */
+}
+
+/* Optional: Make buttons full width on small screens */
+@media (max-width: 760px) {
+  .col .btn-get-started,
+  .col .btn-register {
+    width: 100%; /* Full width on small screens */
+    margin: 0;
+  }
+}
+
+.custom-card {
+  max-width: 250px; /* Adjust width as needed */
+  margin: auto; /* Center the card */
+}
+.gradient-button {
+  background: linear-gradient(
+    90deg,
+    #5de2c3,
+    #bfa69f
+  ); /* Gradient from light teal to orange */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold; /* Bold font weight */
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease; /* Added transition for shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern design */
+}
+
+.gradient-button:hover {
+  background: linear-gradient(
+    90deg,
+    #54b09b,
+    #b9a8a3
+  ); /* Slightly darker on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}

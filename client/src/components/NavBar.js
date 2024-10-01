@@ -13,7 +13,6 @@ import "./NavBar.css";
 const NavBar = () => {
   return (
     <Navbar
-      fixed="top" // Keeps the navbar fixed at the top
       expand="md" // Navbar collapses into a hamburger menu on medium screens and smaller
       className="navbar-custom"
     >
@@ -35,17 +34,22 @@ const NavBar = () => {
           <Nav className="ms-auto" defaultActiveKey="#home">
             {/* Align nav items to the right */}
             <Nav.Item>
-              <Nav.Link as={Link} to="/" className="nav-link">
+              <Nav.Link as={Link} to="/home" className="nav-link">
                 Home
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to="/about">
+              <Nav.Link as={Link} to="/appointment" activeClassName="active">
                 Appointment
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to="/project">
+              <Nav.Link as={Link} to="/services" activeClassName="active">
+                Services
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={Link} to="/about">
                 About Us
               </Nav.Link>
             </Nav.Item>

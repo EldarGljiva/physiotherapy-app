@@ -1,0 +1,48 @@
+.footer-heading {
+  color: #ffb84d; /* Light teal for heading */
+}
+
+/* Darker hover effect for headings */
+.footer-heading:hover {
+  color: #fbce89; /* Darker teal for hover effect */
+}
+
+/* Links */
+ul li a {
+  color: #ffffff; /* White for links */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Orange hover effect for links */
+ul li a:hover {
+  color: #ff6f40 !important; /* Vibrant orange for link hover effect */
+}
+
+/* Contact information */
+p {
+  color: #ffffff; /* White for contact information */
+  margin: 5px 0; /* Margin for spacing */
+}
+
+/* Social Media Icons */
+a svg {
+  fill: #ffffff; /* White color for social media icons */
+  transition: fill 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Orange hover effect for social media icons */
+a:hover svg {
+  fill: #ff6f40; /* Vibrant orange for hover effect */
+}
+
+.footer-copyright {
+  color: #a4efde !important; /* Light teal */
+  margin-top: 10px; /* Optional margin for spacing */
+}
+
+.divider {
+  height: 1px; /* Height of the line */
+  background-color: #ffffff; /* White color */
+  margin: 10px 5px; /* Spacing above and below the line */
+}
