@@ -16,8 +16,8 @@ public class Appointment {
     private Long appointmentId;
 
     @ManyToOne // Many appointments can belong to one user
-    @JoinColumn(name = "user_id") // Foreign key column
-    private User user;
+    @JoinColumn(name = "user_id", nullable = false) // Foreign key column
+    private User user;  // Reference to User
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -26,11 +26,10 @@ public class Appointment {
     private LocalDateTime dateTime;
 
     @ManyToOne // Many appointments can belong to one treatment plan
-    @JoinColumn(name = "treatment_plan_id")
+    @JoinColumn(name = "treatment_plan_id", nullable = false) // Foreign key column
     private TreatmentPlan treatmentPlan;
 
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
     @PrePersist

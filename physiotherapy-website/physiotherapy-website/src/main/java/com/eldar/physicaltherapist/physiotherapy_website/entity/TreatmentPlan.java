@@ -2,6 +2,7 @@ package com.eldar.physicaltherapist.physiotherapy_website.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -15,19 +16,20 @@ public class TreatmentPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long treatmentPlanId;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
-
+    @NotNull
     private String title;
+
+    @NotNull
     private String description;
 
-    private LocalDateTime startDate; // Start date of the treatment
-    private LocalDateTime endDate; // End date of the treatment
+    @Enumerated(EnumType.STRING)
+    private TreatmentPlanType treatmentPlanType;  // Enum field
 
-    // One TreatmentPlan can have multiple Appointments; changes to TreatmentPlan affect all associated Appointments.
-    @OneToMany(mappedBy = "treatmentPlan", cascade = CascadeType.ALL)
-    private List<Appointment> appointments;
+    @NotNull
+    private Integer duration;  // Duration in days
+
+    @OneToMany(mappedBy = "treatmentPlan", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Appointment> appointments;  // List of appointments associated with this treatment plan
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

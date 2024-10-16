@@ -16,20 +16,6 @@ public class UserController {
 
     private final UserService userService;
 
-    // Register
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
-        try{
-            User newUser = userService.register(user);
-            if(newUser != null){
-                return new ResponseEntity<>("Registered Successfully!", HttpStatus.CREATED);
-            }
-        }catch(EntityNotFoundException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>("Registration failed!", HttpStatus.BAD_REQUEST);
-    }
-
     // Get user by id
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable Long id){

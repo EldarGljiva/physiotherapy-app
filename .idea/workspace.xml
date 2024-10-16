@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a48da5c-6a87-48df-96e2-5dc743810496" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/entity/Appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/PhysiotherapyWebsiteApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/PhysiotherapyWebsiteApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/entity/TreatmentPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/entity/TreatmentPlan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/java/com/eldar/physicaltherapist/physiotherapy_website/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/physiotherapy-website/physiotherapy-website/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +66,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/eldar/OneDrive/Desktop/physiotherapy-app/physiotherapy-app&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/eldar/OneDrive/Desktop/physiotherapy-app&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -106,6 +106,8 @@
       <workItem from="1727435007949" duration="6581000" />
       <workItem from="1727455826465" duration="2165000" />
       <workItem from="1727458751938" duration="4098000" />
+      <workItem from="1727857677913" duration="617000" />
+      <workItem from="1727877573668" duration="19000" />
     </task>
     <servers />
   </component>

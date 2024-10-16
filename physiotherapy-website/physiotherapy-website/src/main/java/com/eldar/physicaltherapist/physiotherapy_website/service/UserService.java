@@ -4,7 +4,10 @@ import com.eldar.physicaltherapist.physiotherapy_website.entity.User;
 import com.eldar.physicaltherapist.physiotherapy_website.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +18,7 @@ public class UserService {
     public User register(User user) {
         return userRepository.save(user);
     }
+
 
     // Get user by id
     public User getUserById(Long id) {
@@ -31,8 +35,7 @@ public class UserService {
         // Update fields as necessary
         existingUser.setEmail(userDetails.getEmail());
         existingUser.setPassword(userDetails.getPassword());
-        existingUser.setFirstName(userDetails.getFirstName());
-        existingUser.setLastName(userDetails.getLastName());
+        existingUser.setUsername(userDetails.getUsername());
         existingUser.setRole(userDetails.getRole());
 
         return userRepository.save(existingUser);
@@ -45,5 +48,17 @@ public class UserService {
 
         userRepository.delete(existingUser);
     }
+
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String usernameOrEmail) {
+                return userRepository.findByUsernameOrEmail(usernameOrEmail)
+                        .orElseThrow(() -> new UsernameNotFoundException("User not found."));
+            }
+        };
+    }
+
+
 
 }

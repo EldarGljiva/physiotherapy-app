@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa"; // Import icons
 import "./AboutUs.css";
+import Type from "./Type";
 
 import woman_in_spa from "../../assets/women-in-spa.webp";
 
@@ -17,7 +18,7 @@ const AboutUs = () => {
               md={6}
               className="hero-text d-flex flex-column justify-content-center align-items-center"
             >
-              <h1>We are dedicated to your wellness journey.</h1>
+              <Type />
               <Link to="/services">
                 <button className="btn-services">Our Services</button>
               </Link>
