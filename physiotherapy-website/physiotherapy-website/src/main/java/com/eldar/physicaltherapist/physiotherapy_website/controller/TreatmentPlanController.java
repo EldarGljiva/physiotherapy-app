@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/treatmentplan")
@@ -27,5 +29,11 @@ public class TreatmentPlanController {
         } catch (Exception e) {
             return new ResponseEntity<>("An error occurred: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<TreatmentPlan>> getAllTreatmentPlans() {
+        List<TreatmentPlan> treatmentPlans = treatmentPlanService.getAllTreatmentPlans();
+        return new ResponseEntity<>(treatmentPlans, HttpStatus.OK);
     }
 }

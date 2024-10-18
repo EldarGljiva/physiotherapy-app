@@ -40,16 +40,22 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors() // Enable CORS
                 .and()
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable) // Disable CSRF for stateless sessions
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/auth/register").permitAll() // Allow public access to registration
-                        .requestMatchers("/api/auth/login").permitAll() // Allow public access to login if you have it
-                        .anyRequest().authenticated()) // All other requests need authentication
-                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll() // Public routes
+                        .requestMatchers(HttpMethod.GET, "/api/treatmentplan/**").permitAll() // Only GET is public
+                        .requestMatchers(HttpMethod.POST, "/api/treatmentplan/**").authenticated() // Require token for POST
+                        .requestMatchers(HttpMethod.POST, "/api/appointments/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+
+                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless session
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

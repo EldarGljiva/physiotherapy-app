@@ -1,5 +1,6 @@
 package com.eldar.physicaltherapist.physiotherapy_website.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -21,6 +22,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Appointment> appointments;  // List of appointments associated with the user
 
@@ -83,6 +85,9 @@ public class User implements UserDetails {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
+    public Long getId() {
+        return userId;
+    }
 
 
 }

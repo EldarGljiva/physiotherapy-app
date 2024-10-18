@@ -134,7 +134,7 @@ const Home = () => {
             </Row>
             {/* Button Section */}
             <div className="d-flex justify-content-center mt-4">
-              <Link to="/about">
+              <Link to="/services">
                 {" "}
                 {/* Adjust the path as necessary */}
                 <button className="gradient-button">Find Out More</button>

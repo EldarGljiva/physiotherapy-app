@@ -16,16 +16,17 @@ public class AppointmentController {
     private final AppointmentService appointmentService;
 
     // Create appointment
+    @CrossOrigin(origins = "*")
     @PostMapping
     public ResponseEntity<?> addAppointment(@RequestBody Appointment appointment) {
-        try{
+        try {
             Appointment newAppointment = appointmentService.addAppointment(appointment);
-            if(newAppointment != null ){
-                return new ResponseEntity<>(newAppointment, HttpStatus.CREATED);
-            }
-        }catch(EntityNotFoundException e){
+            return new ResponseEntity<>(newAppointment, HttpStatus.CREATED);
+        } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("Creation failed", HttpStatus.BAD_REQUEST);
     }
+
 }

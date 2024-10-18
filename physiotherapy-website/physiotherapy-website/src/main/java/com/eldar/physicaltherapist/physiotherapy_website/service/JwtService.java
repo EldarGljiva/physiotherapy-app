@@ -1,5 +1,6 @@
 package com.eldar.physicaltherapist.physiotherapy_website.service;
 
+import com.eldar.physicaltherapist.physiotherapy_website.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import java.util.function.Function;
@@ -26,7 +27,21 @@ public class JwtService {
 
     // used to produce the JWT token string.
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        Long userId = ((User) userDetails).getId(); // Cast UserDetails to User and extract userId
+        return generateToken(new HashMap<>(), userDetails, userId);
+    }
+
+
+    // Generate token with userId as an extra claim
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, Long userId) {
+        extraClaims.put("userId", userId);  // Add userId as a claim
+        return Jwts.builder()
+                .setClaims(extraClaims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .signWith(getSigningKey())
+                .compact();
     }
 
     // Compares the username extracted from the token to the actual UserDetails
@@ -39,15 +54,6 @@ public class JwtService {
     private <T> T extractClaim(String token, Function<Claims, T> claimsResolvers) {
         final Claims claims = extractAllClaims(token);
         return claimsResolvers.apply(claims);
-    }
-
-    private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        return Jwts.builder()
-                .claims(extraClaims)
-                .subject(userDetails.getUsername())
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-                .signWith(getSigningKey()).compact();
     }
 
     // Verifies the expiration date of a token.
@@ -65,6 +71,8 @@ public class JwtService {
         return Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token)
                 .getPayload();
     }
+
+
 
     // used to encode the JWT secret key into a format usable by the JWT encoder.
     private SecretKey getSigningKey() {

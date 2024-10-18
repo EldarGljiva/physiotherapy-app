@@ -9,6 +9,9 @@ import Login from "./components/Login/Login";
 import Appointment from "./components/Appointment/Appointment";
 import AppointmentForm from "./components/Appointment/AppointmentForm";
 import AboutUs from "./components/AboutUs/AboutUs";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Services from "./components/Services/Services";
 
 function App() {
   return (
@@ -24,8 +27,10 @@ function App() {
             <Route path="/appointment" element={<Appointment />} />
             <Route path="appointment-form" element={<AppointmentForm />} />
             <Route path="/about" element={<AboutUs />} />
+            <Route path="/services" element={<Services />} />
           </Routes>
         </main>
+        <ToastContainer />
         <Footer />
       </div>
     </Router>

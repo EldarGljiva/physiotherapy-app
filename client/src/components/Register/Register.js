@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import "./Register.css";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +17,8 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
     try {
@@ -22,12 +26,23 @@ const Register = () => {
         "http://localhost:8080/api/auth/register",
         formData
       );
-      console.log("Registration successful:", response.data);
-      // Handle success (e.g., redirect to login)
+
+      const token = response.data.jwt;
+      localStorage.setItem("token", token);
+      console.log("Registration successful, token saved:", token);
+
+      // Clear the form
+      setFormData({ email: "", password: "" });
+
+      // Redirect to /home after login success
+      navigate("/home");
+
+      toast.success("Register successful!");
     } catch (error) {
       if (error.response) {
         // Server responded with a status other than 2xx
         console.error("Registration failed:", error.response.data);
+        toast.error("An error occurred. Please try again.");
       } else {
         // Network error or some other issue
         console.error("Registration failed:", error.message);

@@ -1,5 +1,6 @@
 package com.eldar.physicaltherapist.physiotherapy_website.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"appointments", "hibernateLazyInitializer", "handler"})
 public class TreatmentPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +30,9 @@ public class TreatmentPlan {
     private Integer duration;  // Duration in days
 
     @OneToMany(mappedBy = "treatmentPlan", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Appointment> appointments;  // List of appointments associated with this treatment plan
+    @JsonIgnore
+    private List<Appointment> appointments;
+    // List of appointments associated with this treatment plan
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

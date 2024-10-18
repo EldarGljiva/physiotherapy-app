@@ -19,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+
 
 @Service
 public class AuthService {
@@ -42,13 +44,12 @@ public class AuthService {
         userRequestDTO.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
         User user = userRepository.save(userRequestDTO.toEntity());
 
-        // Generate JWT token for the registered user
-        String jwt = jwtService.generateToken(user);
+        // Generate JWT token for the registered user, include userId as a claim
+        String jwt = jwtService.generateToken(new HashMap<>(), user, user.getId());
 
         // Return user details along with the token
         return new UserDTO(user, jwt);
     }
-
 
     public LoginDTO signIn(LoginRequestDTO loginRequestDTO) {
         try {
@@ -62,7 +63,9 @@ public class AuthService {
         User user = userRepository.findByEmail(loginRequestDTO.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("This user does not exist."));
 
-        String jwt = jwtService.generateToken(user);
+        // Generate JWT token with userId as a claim
+        String jwt = jwtService.generateToken(new HashMap<>(), user, user.getId());
+
         return new LoginDTO(jwt);
     }
 }
