@@ -18,7 +18,9 @@ const AppointmentForm = () => {
   // Define the token in the component scope so it's accessible
   const storedToken = localStorage.getItem("token");
   console.log("Token:", storedToken);
-  const payload = JSON.parse(atob(storedToken.split(".")[1]));
+  const payload = storedToken
+    ? JSON.parse(atob(storedToken.split(".")[1]))
+    : null;
   console.log("Decoded JWT Payload:", payload);
 
   const extractUserIdFromToken = (token) => {

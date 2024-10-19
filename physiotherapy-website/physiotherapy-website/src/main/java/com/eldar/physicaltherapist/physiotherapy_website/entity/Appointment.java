@@ -36,6 +36,8 @@ public class Appointment {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
+
+        this.status = Status.SCHEDULED;
     }
 
     @PreUpdate

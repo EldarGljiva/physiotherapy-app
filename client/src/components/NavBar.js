@@ -2,15 +2,27 @@ import Navbar from "react-bootstrap/Navbar"; // Import Bootstrap Navbar componen
 import Container from "react-bootstrap/Container"; // Import Bootstrap Container component
 import Nav from "react-bootstrap/Nav"; // Import Bootstrap Nav component
 
-import { Link } from "react-router-dom"; // Import Link component from React Router for navigation
-
 import React from "react"; // Import React, useState, and useEffect
 
 import logo from "../assets/logo.png";
 
+import { Link, useNavigate } from "react-router-dom";
+
+import { toast } from "react-toastify";
+
 import "./NavBar.css";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Remove the JWT from local storage
+    navigate("/login");
+    toast.success("Logout successful!");
+  };
+
+  const storedToken = localStorage.getItem("token");
+
   return (
     <Navbar
       expand="md" // Navbar collapses into a hamburger menu on medium screens and smaller
@@ -18,7 +30,7 @@ const NavBar = () => {
     >
       <Container>
         {/* Navbar Brand/Logo */}
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/home">
           <img
             src={logo}
             className="d-inline-block align-top logo"
@@ -54,9 +66,16 @@ const NavBar = () => {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to="/register" className="special-nav-link">
-                Register
-              </Nav.Link>
+              {/* Conditional rendering based on token existence */}
+              {storedToken ? (
+                <Nav.Link onClick={handleLogout} className="special-nav-link">
+                  Logout
+                </Nav.Link>
+              ) : (
+                <Nav.Link as={Link} to="/register" className="special-nav-link">
+                  Register
+                </Nav.Link>
+              )}
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

@@ -19,6 +19,10 @@ public class AppointmentService {
 
     // Create appointment
     public Appointment addAppointment(Appointment appointment) {
+        if (appointment.getUser() == null || appointment.getUser().getUserId() == null) {
+            throw new EntityNotFoundException("User not provided or user ID is null");
+        }
+
         User user = userRepository.findById(appointment.getUser().getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
@@ -30,5 +34,5 @@ public class AppointmentService {
 
         return appointmentRepository.save(appointment);
     }
-}
 
+}

@@ -31,16 +31,16 @@ const Footer = () => {
             <h5 className="footer-heading">Quick Links</h5>
             <ul style={{ listStyleType: "none", padding: 0 }}>
               <li>
-                <a href="/">Home</a>
+                <a href="/home">Home</a>
               </li>
               <li>
                 <a href="/about">About Us</a>
               </li>
               <li>
-                <a href="/services">Testimonials</a>
+                <a href="/home">Testimonials</a>
               </li>
               <li>
-                <a href="/privacy-policy">Services</a>
+                <a href="/services">Services</a>
               </li>
             </ul>
           </Col>
