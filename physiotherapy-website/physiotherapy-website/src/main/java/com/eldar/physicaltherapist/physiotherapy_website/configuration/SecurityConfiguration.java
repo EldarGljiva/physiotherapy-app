@@ -26,9 +26,9 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 
-@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
+@Configuration // Indicates that this class provides Spring configuration
+@EnableWebSecurity // Enables Spring Security in the application
+@EnableMethodSecurity // Enables method-level security
 public class SecurityConfiguration {
 
     @Autowired
@@ -46,6 +46,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/api/treatmentplan/**").permitAll() // Only GET is public
                         .requestMatchers(HttpMethod.POST, "/api/treatmentplan/**").authenticated() // Require token for POST
                         .requestMatchers(HttpMethod.POST, "/api/appointments/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/appointments/**").permitAll()
                         .anyRequest().authenticated()
                 )
 
@@ -58,6 +59,7 @@ public class SecurityConfiguration {
 
 
     @Bean
+    // Configures CORS settings
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Your frontend URL
@@ -70,11 +72,13 @@ public class SecurityConfiguration {
     }
 
     @Bean
+    // Encode passwords
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
+    // Configures the authentication provider
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userService.userDetailsService());
@@ -83,6 +87,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
+    // Configures the authentication manager
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
             throws Exception {
         return config.getAuthenticationManager();

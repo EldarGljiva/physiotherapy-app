@@ -4,6 +4,7 @@ import com.eldar.physicaltherapist.physiotherapy_website.dto.LoginDTO;
 import com.eldar.physicaltherapist.physiotherapy_website.dto.LoginRequestDTO;
 import com.eldar.physicaltherapist.physiotherapy_website.dto.UserDTO;
 import com.eldar.physicaltherapist.physiotherapy_website.dto.UserRequestDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,8 +26,8 @@ public class AuthController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, path = "/register")
-    public ResponseEntity<UserDTO> register(@RequestBody UserRequestDTO user) {
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> register(@Valid @RequestBody UserRequestDTO user) {
         return ResponseEntity.ok(authService.signUp(user));
     }
 

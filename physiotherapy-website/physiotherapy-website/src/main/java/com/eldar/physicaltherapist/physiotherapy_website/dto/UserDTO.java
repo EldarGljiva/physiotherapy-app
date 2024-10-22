@@ -11,7 +11,7 @@ public class UserDTO {
     private String email;            // Keep email
     private Role role;               // Keep role, use Role type directly
     private LocalDateTime createdAt; // Use LocalDateTime for creation date
-    private LocalDateTime updatedAt; // Include updatedAt if needed
+    private LocalDateTime updatedAt;
     private String jwt;
 
     public UserDTO(User user, String jwt) {
@@ -20,8 +20,8 @@ public class UserDTO {
         this.email = user.getEmail();
         this.role = user.getRole();
         this.createdAt = user.getCreatedAt();
-        this.updatedAt = user.getUpdatedAt(); // Include if necessary
-        this.jwt = jwt;  // Fix this line, remove "this.jwt = this.jwt"
+        this.updatedAt = user.getUpdatedAt();
+        this.jwt = jwt;
     }
 
 

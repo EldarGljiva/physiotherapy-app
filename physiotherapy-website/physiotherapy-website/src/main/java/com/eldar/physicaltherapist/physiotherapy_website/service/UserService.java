@@ -14,10 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class UserService {
     private final UserRepository userRepository;
 
-    // Register user
-    public User register(User user) {
-        return userRepository.save(user);
-    }
+
 
 
     // Get user by id

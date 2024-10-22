@@ -1,17 +1,28 @@
 package com.eldar.physicaltherapist.physiotherapy_website.dto;
 
 import com.eldar.physicaltherapist.physiotherapy_website.entity.User;
-import com.eldar.physicaltherapist.physiotherapy_website.entity.Role; // Make sure to import the Role enum
+import com.eldar.physicaltherapist.physiotherapy_website.entity.Role;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
 public class UserRequestDTO {
-    private Role role; // Assuming you have a Role enum as in your User entity
+
+    private Role role;
+
+    @NotBlank(message = "Username is required")
+    @Size(min = 6, message = "Username must be at least 6 characters")
     private String username;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email should be valid")
     private String email;
+
+    @NotBlank(message = "Password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
-
-
 
     public UserRequestDTO() { }
 

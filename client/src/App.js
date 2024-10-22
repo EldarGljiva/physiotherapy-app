@@ -12,6 +12,7 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Services from "./components/Services/Services";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -20,12 +21,17 @@ function App() {
         <NavBar />
         <main>
           <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<PrivateRoute element={<Home />} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/appointment" element={<Appointment />} />
-            <Route path="appointment-form" element={<AppointmentForm />} />
+            <Route
+              path="/appointment"
+              element={<PrivateRoute element={<Appointment />} />}
+            />
+            <Route
+              path="appointment-form"
+              element={<PrivateRoute element={<AppointmentForm />} />}
+            />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/services" element={<Services />} />
           </Routes>

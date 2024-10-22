@@ -10,6 +10,10 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AppointmentService {
@@ -33,6 +37,13 @@ public class AppointmentService {
         appointment.setTreatmentPlan(treatmentPlan);
 
         return appointmentRepository.save(appointment);
+    }
+
+    // Check appointment by dateTime
+    public boolean doesAppointmentExist(LocalDateTime dateTime) {
+        List<Appointment> appointments = appointmentRepository.findAll();
+        return appointments.stream()
+                .anyMatch(appointment -> appointment.getDateTime().equals(dateTime));
     }
 
 }

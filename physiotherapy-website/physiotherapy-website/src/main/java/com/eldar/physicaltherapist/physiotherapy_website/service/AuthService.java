@@ -6,7 +6,7 @@ import com.eldar.physicaltherapist.physiotherapy_website.entity.User;
 
 import org.springframework.security.core.AuthenticationException;
 
-import com.eldar.physicaltherapist.physiotherapy_website.ResourceNotFoundException;
+import com.eldar.physicaltherapist.physiotherapy_website.exception.ResourceNotFoundException;
 
 import com.eldar.physicaltherapist.physiotherapy_website.dto.LoginDTO;
 import com.eldar.physicaltherapist.physiotherapy_website.dto.LoginRequestDTO;

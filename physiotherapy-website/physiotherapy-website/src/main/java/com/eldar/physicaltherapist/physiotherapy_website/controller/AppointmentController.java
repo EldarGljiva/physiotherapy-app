@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/api/appointments")
 @RequiredArgsConstructor
@@ -28,5 +30,17 @@ public class AppointmentController {
             return new ResponseEntity<>("An error occurred: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/check")
+    public ResponseEntity<Boolean> checkAppointment(@RequestParam String dateTime) {
+        try {
+            LocalDateTime appointmentDateTime = LocalDateTime.parse(dateTime);
+            boolean exists = appointmentService.doesAppointmentExist(appointmentDateTime);
+            return new ResponseEntity<>(exists, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.eldar.physicaltherapist.physiotherapy_website;
+package com.eldar.physicaltherapist.physiotherapy_website.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

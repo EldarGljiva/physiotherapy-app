@@ -59,6 +59,33 @@ const AppointmentForm = () => {
     e.preventDefault();
 
     const date_time = `${formData.date}T${formData.time}`;
+
+    try {
+      const appointmentCheckResponse = await axios.get(
+        `http://localhost:8080/api/appointments/check?dateTime=${date_time}`,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+
+      // Check the response for availability
+      if (appointmentCheckResponse.data) {
+        // Appointment exists
+        toast.error(
+          "Appointment already taken. Please select another date and time."
+        );
+        return;
+      } else {
+        // Date and time available, proceed to create appointment
+      }
+    } catch (error) {
+      console.error("Error checking appointments:", error);
+      toast.error("Error checking appointment availability.");
+      return;
+    }
+
     const appointmentData = {
       user: {
         userId: userId,
