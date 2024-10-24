@@ -1,9 +1,6 @@
 package com.eldar.physicaltherapist.physiotherapy_website.controller;
 
-import com.eldar.physicaltherapist.physiotherapy_website.dto.LoginDTO;
-import com.eldar.physicaltherapist.physiotherapy_website.dto.LoginRequestDTO;
-import com.eldar.physicaltherapist.physiotherapy_website.dto.UserDTO;
-import com.eldar.physicaltherapist.physiotherapy_website.dto.UserRequestDTO;
+import com.eldar.physicaltherapist.physiotherapy_website.dto.*;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +24,12 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> register(@Valid @RequestBody UserRequestDTO user) {
-        return ResponseEntity.ok(authService.signUp(user));
+    public ResponseEntity<?> register(@Valid @RequestBody UserRequestDTO user) {
+        try {
+            return ResponseEntity.ok(authService.signUp(user));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
 

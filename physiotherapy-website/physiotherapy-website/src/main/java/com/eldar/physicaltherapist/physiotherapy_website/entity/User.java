@@ -89,5 +89,10 @@ public class User implements UserDetails {
         return userId;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+
 
 }

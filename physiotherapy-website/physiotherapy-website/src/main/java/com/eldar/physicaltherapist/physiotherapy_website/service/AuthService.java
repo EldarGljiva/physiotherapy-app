@@ -40,12 +40,20 @@ public class AuthService {
 
     @Transactional
     public UserDTO signUp(UserRequestDTO userRequestDTO) {
+
+        if (userRepository.existsByUsername(userRequestDTO.getUsername())) {
+            throw new IllegalArgumentException("Username already exists");
+        }
+
+        if (userRepository.existsByEmail(userRequestDTO.getEmail())) {
+            throw new IllegalArgumentException("Email already exists");
+        }
         // Encode password and save user
         userRequestDTO.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
         User user = userRepository.save(userRequestDTO.toEntity());
 
-        // Generate JWT token for the registered user, include userId as a claim
-        String jwt = jwtService.generateToken(new HashMap<>(), user, user.getId());
+        // Generate JWT token for the registered user, include userId and role as a claim
+        String jwt = jwtService.generateToken(new HashMap<>(), user, user.getId(), user.getRole().name());
 
         // Return user details along with the token
         return new UserDTO(user, jwt);
@@ -64,7 +72,7 @@ public class AuthService {
                 .orElseThrow(() -> new ResourceNotFoundException("This user does not exist."));
 
         // Generate JWT token with userId as a claim
-        String jwt = jwtService.generateToken(new HashMap<>(), user, user.getId());
+        String jwt = jwtService.generateToken(new HashMap<>(), user, user.getId(), user.getRole().name());
 
         return new LoginDTO(jwt);
     }

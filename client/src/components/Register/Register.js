@@ -40,9 +40,9 @@ const Register = () => {
       toast.success("Register successful!");
     } catch (error) {
       if (error.response) {
-        // Server responded with a status other than 2xx
-        console.error("Registration failed:", error.response.data);
-        toast.error("An error occurred. Please try again.");
+        toast.error(
+          error.response.data || "An error occurred. Please try again."
+        );
       } else {
         // Network error or some other issue
         console.error("Registration failed:", error.message);

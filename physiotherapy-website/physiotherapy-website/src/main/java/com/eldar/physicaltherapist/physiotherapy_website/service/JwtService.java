@@ -28,13 +28,14 @@ public class JwtService {
     // used to produce the JWT token string.
     public String generateToken(UserDetails userDetails) {
         Long userId = ((User) userDetails).getId(); // Cast UserDetails to User and extract userId
-        return generateToken(new HashMap<>(), userDetails, userId);
+        String role = ((User) userDetails).getRole().name(); // Extract role from User
+        return generateToken(new HashMap<>(), userDetails, userId, role);
     }
 
-
-    // Generate token with userId as an extra claim
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, Long userId) {
+    // Generate token with userId and role as extra claims
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, Long userId, String role) {
         extraClaims.put("userId", userId);  // Add userId as a claim
+        extraClaims.put("role", role);  // Add role as a claim
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
@@ -43,6 +44,7 @@ public class JwtService {
                 .signWith(getSigningKey())
                 .compact();
     }
+
 
     // Compares the username extracted from the token to the actual UserDetails
     // that are passed in during authentication, and by inspecting whether the token has expired.

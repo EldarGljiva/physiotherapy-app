@@ -21,7 +21,9 @@ function App() {
         <NavBar />
         <main>
           <Routes>
-            <Route path="/home" element={<PrivateRoute element={<Home />} />} />
+            {/* Default route */}
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route

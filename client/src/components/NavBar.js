@@ -2,7 +2,7 @@ import Navbar from "react-bootstrap/Navbar"; // Import Bootstrap Navbar componen
 import Container from "react-bootstrap/Container"; // Import Bootstrap Container component
 import Nav from "react-bootstrap/Nav"; // Import Bootstrap Nav component
 
-import React from "react"; // Import React, useState, and useEffect
+import React, { useState } from "react"; // Import React, useState, and useEffect
 
 import logo from "../assets/logo.png";
 
@@ -13,20 +13,34 @@ import { toast } from "react-toastify";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
+
+  const storedToken = localStorage.getItem("token");
+  let userRole = null;
+
+  if (storedToken) {
+    const decodedToken = storedToken
+      ? JSON.parse(atob(storedToken.split(".")[1]))
+      : null;
+    console.log("Decoded JWT Payload:", decodedToken); // Decode the token
+    userRole = decodedToken.role; // Extract the role from the token
+  }
+  console.log("role is :" + userRole);
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove the JWT from local storage
     navigate("/login");
     toast.success("Logout successful!");
+    setExpanded(false);
   };
-
-  const storedToken = localStorage.getItem("token");
 
   return (
     <Navbar
       expand="md" // Navbar collapses into a hamburger menu on medium screens and smaller
       className="navbar-custom"
+      expanded={expanded}
+      onToggle={() => setExpanded(!expanded)}
     >
       <Container>
         {/* Navbar Brand/Logo */}
@@ -46,25 +60,53 @@ const NavBar = () => {
           <Nav className="ms-auto" defaultActiveKey="#home">
             {/* Align nav items to the right */}
             <Nav.Item>
-              <Nav.Link as={Link} to="/home" className="nav-link">
+              <Nav.Link as={Link} to="/home" onClick={() => setExpanded(false)}>
                 Home
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to="/appointment" activeClassName="active">
+              <Nav.Link
+                as={Link}
+                to="/appointment"
+                activeClassName="active"
+                onClick={() => setExpanded(false)}
+              >
                 Appointment
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to="/services" activeClassName="active">
+              <Nav.Link
+                as={Link}
+                to="/services"
+                activeClassName="active"
+                onClick={() => setExpanded(false)}
+              >
                 Services
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to="/about">
+              <Nav.Link
+                as={Link}
+                to="/about"
+                onClick={() => setExpanded(false)}
+              >
                 About Us
               </Nav.Link>
             </Nav.Item>
+
+            {/* Only display this link if the user role is 'therapist' */}
+            {userRole === "THERAPIST" && (
+              <Nav.Item>
+                <Nav.Link
+                  as={Link}
+                  to="/therapist-dashboard"
+                  onClick={() => setExpanded(false)}
+                >
+                  Therapist Dashboard
+                </Nav.Link>
+              </Nav.Item>
+            )}
+
             <Nav.Item>
               {/* Conditional rendering based on token existence */}
               {storedToken ? (
@@ -72,7 +114,12 @@ const NavBar = () => {
                   Logout
                 </Nav.Link>
               ) : (
-                <Nav.Link as={Link} to="/register" className="special-nav-link">
+                <Nav.Link
+                  as={Link}
+                  to="/register"
+                  className="special-nav-link"
+                  onClick={() => setExpanded(false)}
+                >
                   Register
                 </Nav.Link>
               )}
